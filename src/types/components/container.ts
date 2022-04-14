@@ -22,8 +22,6 @@ type AlignContent =
   | 'last baseline';
 type Gap = string | number;
 // type of grid container
-type GridTemplateColumns = string;
-type GridTemplateRows = string;
 
 /***********************************/
 /*╔══════════════════════╗
@@ -32,7 +30,16 @@ type GridTemplateRows = string;
 /***********************************/
 
 // interface of flex container
-export interface FlexContainerProps {
+interface defaultProps {
+  width: number | 'auto';
+  suffixWidth: 'px' | 'vw' | '%';
+  height: number | 'auto';
+  suffixHeight: 'px' | 'vw' | '%';
+  background: string;
+  color: string;
+}
+
+export interface FlexContainerProps extends defaultProps {
   flexDirection?: FlexDirection;
   flexWrap?: FlexWrap;
   justifyContent?: JustifyContent;
@@ -42,7 +49,10 @@ export interface FlexContainerProps {
 }
 
 // interface of grid container
-export interface GridContainerProps {
-  gridTemplateColumns?: GridTemplateColumns;
-  gridTemplateRows?: GridTemplateRows;
+export interface GridContainerProps extends defaultProps {
+  gridTemplateColumns?: string;
+  gridTemplateRows?: string;
+  placeItems: string;
+  placeContent: string;
+  gap?: Gap;
 }
